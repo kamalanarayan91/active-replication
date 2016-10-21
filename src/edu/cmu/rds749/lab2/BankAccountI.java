@@ -14,24 +14,37 @@ public class BankAccountI extends AbstractServer
 
     private int balance = 0;
     private ProxyControl ctl;
+    private Object lock;
 
-    public BankAccountI(Configuration config) {
+
+    public BankAccountI(Configuration config)
+    {
         super(config);
         this.config = config;
+        this.lock = new Object();
     }
 
     @Override
-    protected void doStart(ProxyControl ctl) throws Exception {
+    protected void doStart(ProxyControl ctl) throws Exception
+    {
         this.ctl = ctl;
-    }
 
-    @Override
-    protected void handleBeginReadBalance(int reqid) {
 
     }
 
     @Override
-    protected void handleBeginChangeBalance(int reqid, int update) {
+    protected void handleBeginReadBalance(int reqid)
+    {
+
+        ctl.endReadBalance(reqid,balance);
+
+    }
+
+    @Override
+    protected void handleBeginChangeBalance(int reqid, int update)
+    {
+        balance+=update;
+        ctl.endChangeBalance(reqid,balance);
 
     }
 
