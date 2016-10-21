@@ -5,7 +5,8 @@ import edu.cmu.rds749.common.BankAccountStub;
 /**
  * Created by sharath on 17/9/16.
  */
-public class Server {
+public class Server
+{
 
     private long Id;
     private BankAccountStub serverObject;
@@ -38,6 +39,16 @@ public class Server {
     public void beginChangeBalance(int reqid,int balance) throws BankAccountStub.NoConnectionException
     {
         serverObject.beginChangeBalance(reqid,balance);
+    }
+
+    protected int getState() throws BankAccountStub.NoConnectionException
+    {
+        return serverObject.getState();
+    }
+
+    protected int setState(int state) throws BankAccountStub.NoConnectionException
+    {
+        return serverObject.setState(state);
     }
 
 }

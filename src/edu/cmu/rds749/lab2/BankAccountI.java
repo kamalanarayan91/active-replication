@@ -51,12 +51,13 @@ public class BankAccountI extends AbstractServer
     @Override
     protected int handleGetState()
     {
-        return -1;
+        return balance;
     }
 
     @Override
     protected int handleSetState(int balance)
     {
-        return -1;
+        this.balance = balance;
+        return balance;
     }
 }
