@@ -30,23 +30,23 @@ public class Server
         Id = id;
     }
 
-    public void beginReadBalance(int reqid) throws BankAccountStub.NoConnectionException
+    public void beginReadBalance(int reqid) throws Exception// BankAccountStub.NoConnectionException
     {
         serverObject.beginReadBalance(reqid);
     }
 
 
-    public void beginChangeBalance(int reqid,int balance) throws BankAccountStub.NoConnectionException
+    public void beginChangeBalance(int reqid,int balance) throws Exception//BankAccountStub.NoConnectionException
     {
         serverObject.beginChangeBalance(reqid,balance);
     }
 
-    protected int getState() throws BankAccountStub.NoConnectionException
+    protected int getState() throws Exception//BankAccountStub.NoConnectionException
     {
         return serverObject.getState();
     }
 
-    protected int setState(int state) throws BankAccountStub.NoConnectionException
+    protected int setState(int state) throws Exception//BankAccountStub.NoConnectionException
     {
         return serverObject.setState(state);
     }

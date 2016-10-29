@@ -101,9 +101,9 @@ public class Proxy extends AbstractProxy
                             System.out.println("Registered id:" + id + " state:" + state);
                             break;
                         }
-                        catch (BankAccountStub.NoConnectionException e)
+                        catch (Exception e)
                         {
-                            e.printStackTrace();
+                            System.out.println("Failed inside begin Quiesecne");
                             failedServers.add(active.getId());
                         }
                     }
@@ -138,7 +138,7 @@ public class Proxy extends AbstractProxy
                         server.beginReadBalance(reqid);
                         requestInProgress.incrementAndGet();
                         servicingServers.add(server.getId());
-                    } catch (BankAccountStub.NoConnectionException e) {
+                    } catch (Exception e) {
                         failedServerList.add(server.getId());
                         e.printStackTrace();
                     }
@@ -146,6 +146,7 @@ public class Proxy extends AbstractProxy
 
                 if (failedServerList.size() == serverList.size()) {
                     System.out.println("No servers!");
+                    System.out.println("Failed inside begin Read Balance");
                     clientProxy.RequestUnsuccessfulException(reqid);
                 }
 
@@ -184,8 +185,9 @@ public class Proxy extends AbstractProxy
                         server.beginChangeBalance(reqid, update);
                         requestInProgress.incrementAndGet();
                         servicingServers.add(server.getId());
-                    } catch (BankAccountStub.NoConnectionException e) {
+                    } catch (Exception e) {
                         failedServerList.add(server.getId());
+                        System.out.println("Failed inside begin change Balance");
                         e.printStackTrace();
                     }
                 }

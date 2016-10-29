@@ -1,0 +1,5 @@
+In the event of failure of a server (with replicas available), the operation is successfully carried out by the replicas and the correct result is returned to the client.
+
+In lab 1, the system returned an incorrect value (as there was no state transfer between multiple servers - no replication)
+
+
